@@ -1,0 +1,46 @@
+apiVersion: backstage.io/v1alpha1
+kind: Component
+metadata:
+  name: tedty
+  description: tyu
+  annotations:
+    github.com/project-slug: marlindim/TESTYUI
+    backstage.io/techdocs-ref: dir:.
+    backstage.io/kubernetes-id: tedty
+    backstage.io/kubernetes-namespace: default
+    prometheus.io/rule: 'up{job="tedty"}'
+    grafana/dashboard-selector: "tags @> 'tedty'"
+    grafana/alert-label-selector: "service=tedty"
+  tags:
+    - nodejs
+    - express
+    - typescript
+    - api
+spec:
+  type: service
+  lifecycle: experimental
+  owner: group:default/devops
+  providesApis:
+    - tedty-api
+---
+apiVersion: backstage.io/v1alpha1
+kind: API
+metadata:
+  name: tedty-api
+  description: REST API for tedty
+spec:
+  type: openapi
+  lifecycle: experimental
+  owner: group:default/devops
+  definition: |
+    openapi: 3.0.0
+    info:
+      title: tedty
+      version: 1.0.0
+    paths:
+      /health:
+        get:
+          summary: Health check
+          responses:
+            '200':
+              description: Service is healthy

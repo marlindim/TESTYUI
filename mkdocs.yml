@@ -1,0 +1,8 @@
+site_name: 'tedty'
+site_description: 'tyu'
+
+nav:
+  - Home: index.md
+
+plugins:
+  - techdocs-core
